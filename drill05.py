@@ -21,14 +21,15 @@ def draw_hand():
     hand_arrow.draw(hand_x,hand_y)
 
     if hand_x == x and hand_y == y:
-        hand_x = random.randint(100,1100)
-        hand_y = random.randint(100,900)
+        hand_x = random.randint(50,1150)
+        hand_y = random.randint(50,950)
         origin_x = x
         origin_y = y
         i = 0
 
 def move_character():
     global frame,x,y,origin_x,origin_y,i
+
     t = i/100
     x = (1 - t) * origin_x + t * hand_x
     y = (1 - t) * origin_y + t * hand_y
@@ -40,11 +41,19 @@ def move_character():
     frame = (frame + 1) % 8
     i += 5
 
+def handle_events():
+    global running
+    events = get_events()
+
+    for event in events:
+        if event.type == SDL_QUIT:
+            running = False
 
 while running:
     clear_canvas()
     TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
     draw_hand()
     move_character()
+    handle_events()
     update_canvas()
     delay(0.1)
