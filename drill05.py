@@ -31,6 +31,7 @@ def move_character():
     global frame,x,y,origin_x,origin_y,i
 
     t = i/100
+
     x = (1 - t) * origin_x + t * hand_x
     y = (1 - t) * origin_y + t * hand_y
 
