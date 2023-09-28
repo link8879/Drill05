@@ -33,7 +33,10 @@ def move_character():
     x = (1 - t) * origin_x + t * hand_x
     y = (1 - t) * origin_y + t * hand_y
 
-    character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
+    if origin_x > hand_x:
+        character.clip_draw(frame * 100, 0 * 1, 100, 100, x, y)
+    else:
+        character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
     frame = (frame + 1) % 8
     i += 5
 
